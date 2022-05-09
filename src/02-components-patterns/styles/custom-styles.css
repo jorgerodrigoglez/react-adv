@@ -24,3 +24,9 @@
     background-color: #fff;
     border-color: #000;
 }
+
+.shopping-card{
+    position: fixed;
+    right: 10px;
+    top: 0px;
+}
