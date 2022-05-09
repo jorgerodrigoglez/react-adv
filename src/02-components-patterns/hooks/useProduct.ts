@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect } from 'react';
 import { onChangeArgs, Product } from '../interfaces/interfaces';
 
 // control-props
@@ -14,7 +14,7 @@ export const useProduct = ( { onChange, product, value = 0 }: useProductArg ) =>
 
     const [counter, setCounter] = useState(value);
     // refaroctización del onChange mediante useRef
-    const isController = useRef( !!onChange ); // true
+    // const isController = useRef( !!onChange ); // true
 
     const increaseBy = (value: number) => {
         //console.log(value);
@@ -22,9 +22,9 @@ export const useProduct = ( { onChange, product, value = 0 }: useProductArg ) =>
         //onChange && onChange();
 
         //console.log('isCantrolled', isController.current );
-        if( isController.current && onChange){
-            return onChange({count: value, product});
-        }
+        // if( isController.current && onChange){
+        //     return onChange({count: value, product});
+        // }
 
         // control-props
         const newValue = Math.max(counter + value, 0);
