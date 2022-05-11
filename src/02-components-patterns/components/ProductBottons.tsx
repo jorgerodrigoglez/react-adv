@@ -1,4 +1,4 @@
-import { useContext, CSSProperties } from 'react';
+import { useContext, CSSProperties, useCallback } from 'react';
 import { ProductContext } from './ProductCard';
 import styles from '../styles/styles.module.css';
 
@@ -17,7 +17,14 @@ export interface Props {
 //export const ProductButtons = () => {
 export const ProductButtons = ({ className, style}: Props) => {
     // Context para componentes hijos 
-    const { increaseBy, counter } = useContext(ProductContext);
+    const { increaseBy, counter, maxCount } = useContext(ProductContext);
+    //console.log(counter);
+    //console.log(maxCount);
+
+    const isMaxReached = useCallback(
+        () => !!maxCount && counter === maxCount,
+        [counter, maxCount],
+    )
 
     return (
         <div 
@@ -32,7 +39,8 @@ export const ProductButtons = ({ className, style}: Props) => {
                 {counter}
             </div>
             <button
-                className={styles.buttonAdd}
+                // si es un true aplica el estilo
+                className={`${styles.buttonAdd} ${ isMaxReached() && styles.disabled }`}
                 onClick={() => increaseBy(+1)}
             >+</button>
         </div>

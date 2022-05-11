@@ -1,8 +1,7 @@
-import { createContext, ReactElement, CSSProperties } from 'react';
+import { createContext, CSSProperties } from 'react';
 import styles from '../styles/styles.module.css';
 import { useProduct } from '../hooks/useProduct';
-import { ProductContextProps, Product, onChangeArgs } from '../interfaces/interfaces';
-
+import { ProductContextProps, Product, onChangeArgs, InitialValues, ProductCardHandlers } from '../interfaces/interfaces';
 
 export const ProductContext = createContext({} as ProductContextProps);
 const { Provider } = ProductContext;
@@ -10,17 +9,21 @@ const { Provider } = ProductContext;
 // Custom ClassName
 export interface Props {
     product: Product;
-    children?: ReactElement | ReactElement[];
+    //children?: ReactElement | ReactElement[];
+    //children: () => JSX.Element;
+    children: ( args: ProductCardHandlers ) => JSX.Element,
     className?: string;
     style?: CSSProperties;
     // control-props
     onChange?: ( args: onChangeArgs ) => void;
     value?: number;
+    initialValues?: InitialValues;
 }
 
-export const ProductCard = ({ children, product, className, style, onChange, value }: Props) => {
+export const ProductCard = ({ children, product, className, style, onChange, value, initialValues }: Props) => {
     //console.log(styles);
-    const { counter, increaseBy } = useProduct({ onChange, product, value });
+    const { counter, increaseBy, maxCount, isMaxCountReached, reset } = useProduct({ onChange, product, value, initialValues });
+    //console.log(counter);
 
     return (
         <div className={styles.productCard}>
@@ -55,12 +58,21 @@ export const ProductCard = ({ children, product, className, style, onChange, val
                 counter,
                 increaseBy,
                 product,
+                maxCount,
             }}>
                 <div 
                     className={`${styles.productCard} ${className}`}
                     style={style}
                 >
-                    {children}
+                    {children({
+                        count: counter,
+                        isMaxCountReached,
+                        maxCount: initialValues?.maxCount,
+                        product,
+                    
+                        increaseBy,
+                        reset
+                    })}
                 </div>
 
             </Provider>

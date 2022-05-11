@@ -19,6 +19,7 @@ export interface Product {
 // Context para componentes hijos 
 export interface ProductContextProps {
     counter: number;
+    maxCount?: number;
     product: Product;
     increaseBy: (value: number) => void;
 
@@ -48,7 +49,24 @@ export interface onChangeArgs {
     count: number;
 }
 
-// 
+// useShoppingCart
 export interface ProductInCart extends Product {
     count: number
+}
+
+// components-extend-initializer
+export interface InitialValues{
+    count?: number;
+    maxCount?: number
+}
+
+// components-extend-initializer
+export interface ProductCardHandlers{
+    count: number;
+    isMaxCountReached: boolean;
+    maxCount?: number;
+    product: Product;
+    increaseBy: ( value: number ) => void;
+    reset: () => void
+
 }

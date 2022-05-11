@@ -15,7 +15,7 @@ export const useShoppingCart = () => {
 
         // no se puede hacer...
         //shoppingCart[ product.id ] = { ...product, count }
-        console.log({ count });
+        //console.log({ count });
 
         setShoppingCart(oldShoppingCart => {
             // eliminar el producto con cantidad 0
