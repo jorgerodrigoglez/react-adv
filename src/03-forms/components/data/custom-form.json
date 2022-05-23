@@ -1,0 +1,70 @@
+[
+    {
+        "type": "input",
+        "name": "firsName",
+        "placeholder": "Jorge",
+        "label": "First Name",
+        "value": "",
+        "validations":[
+            {
+                "type":"required"
+            },
+            {
+                "type": "minLength",
+                "value": 5
+            }
+        ]
+    },
+    {
+        "type": "input",
+        "name": "lastName",
+        "placeholder": "Rodrigo",
+        "label": "Last Name",
+        "value": "",
+        "validations":[
+            {
+                "type":"required"
+            }
+        ]
+    },
+    {
+        "type": "email",
+        "name": "email",
+        "placeholder": "jrg@gmail.com",
+        "label": "Email",
+        "value": "",
+        "validations":[
+            {
+                "type":"required"
+            },
+            {
+                "type": "email"
+            }
+        ]
+    },
+    {
+        "type": "select",
+        "name": "favoriteGame",
+        "label": "Favorite Game",
+        "value": "",
+        "options": [
+            {
+                "id":1,
+                "label": "Web Designer"
+            },
+            {
+                "id":2,
+                "label": "Frontend Developer" 
+            },
+            {
+                "id":3,
+                "label": "Digital Strategist" 
+            }
+        ],
+        "validations":[
+            {
+                "type":"required"
+            }
+        ]
+    }
+]
